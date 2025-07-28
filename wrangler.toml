@@ -1,0 +1,37 @@
+name = "workers-platform-template"
+main = "src/index.ts"
+compatibility_date = "2024-04-03"
+compatibility_flags = ["nodejs_compat"]
+
+# Routes for custom domain support 
+# routes = [
+#  { pattern = "*/*", zone_name = "yourdomain.com" }
+# ]
+
+workers_dev = true
+
+# Smart Placement
+placement = { mode = "smart" }
+
+# Observability
+[observability.logs]
+enabled = true
+
+[[ dispatch_namespaces ]]
+binding = "dispatcher"
+namespace = "workers-platform-template" # make sure this is the same as the DISPATCH_NAMESPACE_NAME var
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "workers-platform-template"
+database_id = "8011557b-c153-4f9d-9691-3f335a9ba745"
+preview_database_id = ""
+
+[vars]
+DISPATCH_NAMESPACE_NAME = "workers-platform-template"
+ACCOUNT_ID = "YOUR_ACCOUNT_ID_HERE"
+# Custom domain configuration - set these for your deployment
+CUSTOM_DOMAIN = "yourdomain.com"  # Your root domain (change this for your deployment)
+BUILDER_SUBDOMAIN = "build"     # Subdomain where the builder is hosted (build.yourdomain.com)
+FALLBACK_ORIGIN = "my.yourdomain.com"  # Fallback origin for custom hostnames (where CNAMEs point)
+CLOUDFLARE_ZONE_ID = "YOUR_ZONE_ID_HERE"  # Zone ID for custom hostname API calls
